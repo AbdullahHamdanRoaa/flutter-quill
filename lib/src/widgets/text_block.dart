@@ -128,6 +128,7 @@ class EditableTextBlock extends StatelessWidget {
 
   List<Widget> _buildChildren(BuildContext context,
       Map<int, int> indentLevelCounts, bool clearIndents) {
+    print("NodeBuildChilder");
     final defaultStyles = QuillStyles.getStyles(context, false);
     final count = block.children.length;
     final children = <Widget>[];
