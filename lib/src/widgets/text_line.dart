@@ -137,7 +137,11 @@ class _TextLineState extends State<TextLine> {
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMediaQuery(context));
-    if (true) {
+    print("widget.line.hasEmbed");
+    print(widget.line.hasEmbed);
+    print("widget.line.childCount == 1");
+    print(widget.line.childCount == 1);
+    if (widget.line.hasEmbed && widget.line.childCount == 1) {
       // Single child embeds can be expanded
       print("Single child embeds can be expanded");
       var embed = widget.line.children.single as Embed;
