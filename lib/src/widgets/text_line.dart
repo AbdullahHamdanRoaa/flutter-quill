@@ -137,9 +137,10 @@ class _TextLineState extends State<TextLine> {
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMediaQuery(context));
-
+     print("buildTextLine");
     if (widget.line.hasEmbed && widget.line.childCount == 1) {
       // Single child embeds can be expanded
+      print("Single child embeds can be expanded");
       var embed = widget.line.children.single as Embed;
       // Creates correct node for custom embed
       if (embed.value.type == BlockEmbed.customType) {
