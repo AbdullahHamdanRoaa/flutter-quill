@@ -128,7 +128,6 @@ class EditableTextBlock extends StatelessWidget {
 
   List<Widget> _buildChildren(BuildContext context,
       Map<int, int> indentLevelCounts, bool clearIndents) {
-    print("NodeBuildChilder");
     final defaultStyles = QuillStyles.getStyles(context, false);
     final count = block.children.length;
     final children = <Widget>[];
@@ -163,8 +162,8 @@ class EditableTextBlock extends StatelessWidget {
           MediaQuery.of(context).devicePixelRatio,
           cursorCont);
       final nodeTextDirection = getDirectionOfNode(line);
-      children.add(Directionality(
-          textDirection: nodeTextDirection, child: editableTextLine));
+      // children.add(Directionality(
+      //     textDirection: nodeTextDirection, child: editableTextLine));
     }
     return children.toList(growable: false);
   }
