@@ -73,7 +73,7 @@ class _SelectHeaderStyleButtonState extends State<SelectHeaderStyleButton> {
     );
 
     final children = widget.attributes.map((attribute) {
-      if(widget.attributes.first.key == attribute.key) {
+      if(widget.attributes.first.value == attribute.value) {
         return const SizedBox();
       }
       final isSelected = _selectedAttribute == attribute;
