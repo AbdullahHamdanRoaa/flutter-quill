@@ -34,10 +34,8 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final iconColor =
-        widget.iconTheme?.iconUnselectedColor ?? theme.iconTheme.color;
-    final fillColor =
-        widget.iconTheme?.iconUnselectedFillColor ?? theme.canvasColor;
+    final iconColor = widget.iconTheme?.iconUnselectedColor ?? theme.iconTheme.color;
+    final fillColor = widget.iconTheme?.iconUnselectedFillColor ?? theme.canvasColor;
     return QuillIconButton(
       tooltip: widget.tooltip,
       highlightElevation: 0,
@@ -47,6 +45,14 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
       fillColor: fillColor,
       borderRadius: widget.iconTheme?.borderRadius ?? 2,
       onPressed: () {
+        print("widget.controller.selection.extentOffset");
+        print(widget.controller.selection.extentOffset);
+        if (widget.controller.selection.extentOffset == 0) {
+          print("hereeeee");
+          widget.controller.updateSelection(
+              TextSelection(baseOffset: 0, extentOffset: widget.controller.document.length - 1),
+              ChangeSource.LOCAL);
+        }
         final attrs = <Attribute>{};
         for (final style in widget.controller.getAllSelectionStyles()) {
           for (final attr in style.attributes.values) {
@@ -54,13 +60,6 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
           }
         }
         for (final attr in attrs) {
-          if(widget.controller.selection.extentOffset == 0)
-            {
-              widget.controller.updateSelection(TextSelection(baseOffset: 0, extentOffset:
-              widget.controller.document.length-1),
-                  ChangeSource.LOCAL);
-            }
-
           widget.controller.formatSelection(Attribute.clone(attr, null));
         }
       },
