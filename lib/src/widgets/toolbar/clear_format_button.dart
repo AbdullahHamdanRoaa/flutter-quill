@@ -45,14 +45,12 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
       fillColor: fillColor,
       borderRadius: widget.iconTheme?.borderRadius ?? 2,
       onPressed: () {
-        print("widget.controller.selection.extentOffset");
-        print(widget.controller.selection.start);
-        print(widget.controller.selection.end);
+        bool reselect = false;
         if (widget.controller.selection.start == widget.controller.selection.end) {
-          print("hereeeee");
           widget.controller.updateSelection(
               TextSelection(baseOffset: 0, extentOffset: widget.controller.document.length - 1),
               ChangeSource.LOCAL);
+          reselect = true;
         }
         final attrs = <Attribute>{};
         for (final style in widget.controller.getAllSelectionStyles()) {
@@ -62,6 +60,11 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
         }
         for (final attr in attrs) {
           widget.controller.formatSelection(Attribute.clone(attr, null));
+        }
+        if(reselect) {
+          widget.controller.updateSelection(
+              TextSelection(baseOffset: widget.controller.document.length - 1, extentOffset: widget.controller.document.length - 1),
+              ChangeSource.LOCAL);
         }
       },
       afterPressed: widget.afterButtonPressed,
