@@ -46,8 +46,9 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
       borderRadius: widget.iconTheme?.borderRadius ?? 2,
       onPressed: () {
         print("widget.controller.selection.extentOffset");
-        print(widget.controller.selection.extentOffset);
-        if (widget.controller.selection.extentOffset == 0) {
+        print(widget.controller.selection.start);
+        print(widget.controller.selection.end);
+        if (widget.controller.selection.start == widget.controller.selection.end) {
           print("hereeeee");
           widget.controller.updateSelection(
               TextSelection(baseOffset: 0, extentOffset: widget.controller.document.length - 1),
