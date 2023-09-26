@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 
 import '../../models/documents/attribute.dart';
 import '../../models/themes/quill_icon_theme.dart';
@@ -53,6 +54,13 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
           }
         }
         for (final attr in attrs) {
+          if(widget.controller.selection.extentOffset == 0)
+            {
+              widget.controller.updateSelection(TextSelection(baseOffset: 0, extentOffset:
+              widget.controller.document.length-1),
+                  ChangeSource.LOCAL);
+            }
+
           widget.controller.formatSelection(Attribute.clone(attr, null));
         }
       },

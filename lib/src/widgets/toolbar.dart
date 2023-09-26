@@ -399,7 +399,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
           ),
         if (showClearFormat)
           ClearFormatButton(
-            icon: Icons.format_clear,
+            icon: Icons.clear,
             iconSize: toolbarIconSize,
             tooltip: buttonTooltips[ToolbarButtons.clearFormat],
             controller: controller,
