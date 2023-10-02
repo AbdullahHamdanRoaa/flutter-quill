@@ -48,22 +48,26 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> _loadFromAssets() async {
-    try {
-      final result = await rootBundle.loadString(isDesktop()
-          ? 'assets/sample_data_nomedia.json'
-          : 'assets/sample_data.json');
-      final doc = Document.fromJson(jsonDecode(result));
-      setState(() {
-        _controller = QuillController(
-            document: doc, selection: const TextSelection.collapsed(offset: 0));
-      });
-    } catch (error) {
-      final doc = Document()..insert(0, 'Empty asset');
-      setState(() {
-        _controller = QuillController(
-            document: doc, selection: const TextSelection.collapsed(offset: 0));
-      });
-    }
+    _controller = QuillController(
+        document: Document(),
+        keepStyleOnNewLine: true,
+        selection: const TextSelection.collapsed(offset: 0));
+    // try {
+    //   final result = await rootBundle.loadString(isDesktop()
+    //       ? 'assets/sample_data_nomedia.json'
+    //       : 'assets/sample_data.json');
+    //   final doc = Document.fromJson(jsonDecode(result));
+    //   setState(() {
+    //     _controller = QuillController(
+    //         document: doc, selection: const TextSelection.collapsed(offset: 0));
+    //   });
+    // } catch (error) {
+    //   final doc = Document()..insert(0, 'Empty asset');
+    //   setState(() {
+    //     _controller = QuillController(
+    //         document: doc, selection: const TextSelection.collapsed(offset: 0));
+    //   });
+    // }
   }
 
   @override
