@@ -46,7 +46,8 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
       borderRadius: widget.iconTheme?.borderRadius ?? 2,
       onPressed: () {
         bool reselect = false;
-        if (widget.controller.selection.start == widget.controller.selection.end) {
+        if (widget.controller.selection.start == widget.controller.selection.end)
+        {
           widget.controller.updateSelection(
               TextSelection(baseOffset: 0, extentOffset: widget.controller.document.length - 1),
               ChangeSource.LOCAL);
@@ -59,11 +60,16 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
           }
         }
         for (final attr in attrs) {
+          if(attr.key == 'size' || attr.key == 'align'){
+            widget.controller.formatSelection(Attribute.clone(attr, attr.value));
+          } else{
+
           widget.controller.formatSelection(Attribute.clone(attr, null));
-        }
+        }}
         if(reselect) {
           widget.controller.updateSelection(
-              TextSelection(baseOffset: widget.controller.document.length - 1, extentOffset: widget.controller.document.length - 1),
+              TextSelection(baseOffset: widget.controller.document.length - 1,
+                  extentOffset: widget.controller.document.length - 1),
               ChangeSource.LOCAL);
         }
       },
