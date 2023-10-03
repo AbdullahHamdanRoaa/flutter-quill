@@ -10,7 +10,7 @@ import '../toolbar.dart';
 typedef ToggleStyleButtonBuilder = Widget Function(
   BuildContext context,
   Attribute attribute,
-  IconData icon,
+  String icon,
   Color? fillColor,
   bool? isToggled,
   VoidCallback? onPressed,
@@ -35,7 +35,7 @@ class ToggleStyleButton extends StatefulWidget {
 
   final Attribute attribute;
 
-  final IconData icon;
+  final String icon;
   final double iconSize;
 
   final Color? fillColor;
@@ -126,7 +126,7 @@ class _ToggleStyleButtonState extends State<ToggleStyleButton> {
 Widget defaultToggleStyleButtonBuilder(
   BuildContext context,
   Attribute attribute,
-  IconData icon,
+  String icon,
   Color? fillColor,
   bool? isToggled,
   VoidCallback? onPressed,
@@ -155,7 +155,7 @@ Widget defaultToggleStyleButtonBuilder(
     highlightElevation: 0,
     hoverElevation: 0,
     size: iconSize * kIconButtonFactor,
-    icon: Icon(icon, size: iconSize, color: iconColor),
+    icon: SvgIconWrapper(size: 20,iconPath: icon),
     fillColor: fill,
     onPressed: onPressed,
     afterPressed: afterPressed,

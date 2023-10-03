@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../models/documents/attribute.dart';
 import '../../models/rules/insert.dart';
 import '../../models/structs/link_dialog_action.dart';
@@ -14,7 +13,7 @@ class LinkStyleButton extends StatefulWidget {
   const LinkStyleButton({
     required this.controller,
     this.iconSize = kDefaultIconSize,
-    this.icon,
+    required this.icon,
     this.iconTheme,
     this.dialogTheme,
     this.afterButtonPressed,
@@ -25,7 +24,7 @@ class LinkStyleButton extends StatefulWidget {
   }) : super(key: key);
 
   final QuillController controller;
-  final IconData? icon;
+  final String icon;
   final double iconSize;
   final QuillIconTheme? iconTheme;
   final QuillDialogTheme? dialogTheme;
@@ -74,14 +73,7 @@ class _LinkStyleButtonState extends State<LinkStyleButton> {
       highlightElevation: 0,
       hoverElevation: 0,
       size: widget.iconSize * kIconButtonFactor,
-      icon: Icon(
-        widget.icon ?? Icons.link,
-        size: widget.iconSize,
-        color: isToggled
-            ? (widget.iconTheme?.iconSelectedColor ??
-                theme.primaryIconTheme.color)
-            : (widget.iconTheme?.iconUnselectedColor ?? theme.iconTheme.color),
-      ),
+      icon: SvgIconWrapper(iconPath: widget.icon, size: 20,),
       fillColor: isToggled
           ? (widget.iconTheme?.iconSelectedFillColor ??
               Theme.of(context).primaryColor)

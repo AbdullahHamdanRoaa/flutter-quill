@@ -21,7 +21,7 @@ class ToggleCheckListButton extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  final IconData icon;
+  final String icon;
   final double iconSize;
 
   final Color? fillColor;

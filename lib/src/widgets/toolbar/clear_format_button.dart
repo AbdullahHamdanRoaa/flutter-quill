@@ -17,7 +17,7 @@ class ClearFormatButton extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  final IconData icon;
+  final String icon;
   final double iconSize;
 
   final QuillController controller;
@@ -41,7 +41,7 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
       highlightElevation: 0,
       hoverElevation: 0,
       size: widget.iconSize * kIconButtonFactor,
-      icon: Icon(widget.icon, size: widget.iconSize, color: iconColor),
+      icon: SvgIconWrapper(iconPath: widget.icon, size: 20,),
       fillColor: fillColor,
       borderRadius: widget.iconTheme?.borderRadius ?? 2,
       onPressed: () {
