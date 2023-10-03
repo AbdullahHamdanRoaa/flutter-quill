@@ -72,6 +72,7 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
                   extentOffset: widget.controller.document.length - 1),
               ChangeSource.LOCAL);
         }
+        widget.controller.toggledStyle = Style();
       },
       afterPressed: widget.afterButtonPressed,
     );
