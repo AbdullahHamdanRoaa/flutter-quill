@@ -90,7 +90,7 @@ class _LinkStyleButtonState extends State<LinkStyleButton> {
       icon: SvgIconWrapper(iconPath: widget.icon, size: 20,
           color:
           context.isDarkMode?
-          Colors.white:Colors.blue),
+          Colors.white:null),
       fillColor: isToggled
           ? (widget.iconTheme?.iconSelectedFillColor ??
               Theme.of(context).primaryColor)

@@ -155,9 +155,8 @@ Widget defaultToggleStyleButtonBuilder(
     icon: SvgIconWrapper(
         size: 20,
         iconPath: icon,
-        color: View.of(context).platformDispatcher.platformBrightness == Brightness.dark
-            ? iconColor
-            : null),
+        color: context.isDarkMode?
+        Colors.white:null),
     fillColor: fill,
     onPressed: onPressed,
     afterPressed: afterPressed,

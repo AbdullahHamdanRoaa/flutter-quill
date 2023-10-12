@@ -41,7 +41,9 @@ class _ClearFormatButtonState extends State<ClearFormatButton> {
       highlightElevation: 0,
       hoverElevation: 0,
       size: widget.iconSize * kIconButtonFactor,
-      icon: SvgIconWrapper(iconPath: widget.icon, size: 20,color: View.of(context).platformDispatcher.platformBrightness== Brightness.dark?iconColor:null),
+      icon: SvgIconWrapper(iconPath: widget.icon, size: 20,
+          color: context.isDarkMode?
+          Colors.white:null),
       fillColor: fillColor,
       borderRadius: widget.iconTheme?.borderRadius ?? 2,
       onPressed: () {
