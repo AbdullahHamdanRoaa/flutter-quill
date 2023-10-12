@@ -38,6 +38,12 @@ class LinkStyleButton extends StatefulWidget {
 }
 
 class _LinkStyleButtonState extends State<LinkStyleButton> {
+
+
+
+  late Color? iconColor;
+
+
   void _didChangeSelection() {
     setState(() {});
   }
@@ -46,6 +52,14 @@ class _LinkStyleButtonState extends State<LinkStyleButton> {
   void initState() {
     super.initState();
     widget.controller.addListener(_didChangeSelection);
+  }
+
+
+  @override
+  void didChangeDependencies() {
+    final theme = Theme.of(context);
+    iconColor =  widget.iconTheme?.iconUnselectedColor ?? theme.iconTheme.color;
+    super.didChangeDependencies();
   }
 
   @override
@@ -63,6 +77,8 @@ class _LinkStyleButtonState extends State<LinkStyleButton> {
     widget.controller.removeListener(_didChangeSelection);
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -73,7 +89,8 @@ class _LinkStyleButtonState extends State<LinkStyleButton> {
       highlightElevation: 0,
       hoverElevation: 0,
       size: widget.iconSize * kIconButtonFactor,
-      icon: SvgIconWrapper(iconPath: widget.icon, size: 20,),
+      icon: SvgIconWrapper(iconPath: widget.icon, size: 20,
+          color: View.of(context).platformDispatcher.platformBrightness== Brightness.dark?iconColor:null),
       fillColor: isToggled
           ? (widget.iconTheme?.iconSelectedFillColor ??
               Theme.of(context).primaryColor)
