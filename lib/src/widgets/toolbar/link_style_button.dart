@@ -87,8 +87,9 @@ class _LinkStyleButtonState extends State<LinkStyleButton> {
       hoverElevation: 0,
       size: widget.iconSize * kIconButtonFactor,
       icon: SvgIconWrapper(iconPath: widget.icon, size: 20,
-          color: View.of(context).platformDispatcher.platformBrightness== Brightness
-              .dark?Colors.white:Colors.red),
+          color:
+          context.isDarkMode?
+          Colors.white:Colors.green),
       fillColor: isToggled
           ? (widget.iconTheme?.iconSelectedFillColor ??
               Theme.of(context).primaryColor)
@@ -283,4 +284,14 @@ class _TextLink {
 
   final String text;
   final String link;
+}
+
+
+
+extension DarkMode on BuildContext {
+  /// is dark mode currently enabled?
+  bool get isDarkMode {
+    final brightness = MediaQuery.of(this).platformBrightness;
+    return brightness == Brightness.dark;
+  }
 }
