@@ -286,32 +286,6 @@ class _RenderSingleChildViewport extends RenderBox
   }
 
   @override
-  RevealedOffset getOffsetToReveal(RenderObject target, double alignment,
-      {Rect? rect}) {
-    rect ??= target.paintBounds;
-    if (target is! RenderBox) {
-      return RevealedOffset(offset: offset.pixels, rect: rect);
-    }
-
-    final targetBox = target;
-    final transform = targetBox.getTransformTo(child);
-    final bounds = MatrixUtils.transformRect(transform, rect);
-
-    final double leadingScrollOffset;
-    final double targetMainAxisExtent;
-    final double mainAxisExtent;
-
-    mainAxisExtent = size.height;
-    leadingScrollOffset = bounds.top;
-    targetMainAxisExtent = bounds.height;
-
-    final targetOffset = leadingScrollOffset -
-        (mainAxisExtent - targetMainAxisExtent) * alignment;
-    final targetRect = bounds.shift(_paintOffsetForPosition(targetOffset));
-    return RevealedOffset(offset: targetOffset, rect: targetRect);
-  }
-
-  @override
   void showOnScreen({
     RenderObject? descendant,
     Rect? rect,
@@ -350,5 +324,30 @@ class _RenderSingleChildViewport extends RenderBox
       semanticBounds.right,
       semanticBounds.bottom + cacheExtent,
     );
+  }
+
+  @override
+  RevealedOffset getOffsetToReveal(RenderObject target, double alignment, {Rect? rect, Axis? axis}) {
+      rect ??= target.paintBounds;
+      if (target is! RenderBox) {
+        return RevealedOffset(offset: offset.pixels, rect: rect);
+      }
+
+      final targetBox = target;
+      final transform = targetBox.getTransformTo(child);
+      final bounds = MatrixUtils.transformRect(transform, rect);
+
+      final double leadingScrollOffset;
+      final double targetMainAxisExtent;
+      final double mainAxisExtent;
+
+      mainAxisExtent = size.height;
+      leadingScrollOffset = bounds.top;
+      targetMainAxisExtent = bounds.height;
+
+      final targetOffset = leadingScrollOffset -
+          (mainAxisExtent - targetMainAxisExtent) * alignment;
+      final targetRect = bounds.shift(_paintOffsetForPosition(targetOffset));
+      return RevealedOffset(offset: targetOffset, rect: targetRect);
   }
 }
