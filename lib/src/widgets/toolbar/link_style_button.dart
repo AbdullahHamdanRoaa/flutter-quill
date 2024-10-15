@@ -1,4 +1,3 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import '../../models/documents/attribute.dart';
 import '../../models/rules/insert.dart';
@@ -292,6 +291,6 @@ class _TextLink {
 extension DarkMode on BuildContext {
   /// is dark mode currently enabled?
   bool get isDarkMode {
-     return AdaptiveTheme.of(this).brightness == Brightness.dark;
+     return false;
   }
 }
