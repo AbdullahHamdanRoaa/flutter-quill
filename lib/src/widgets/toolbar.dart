@@ -69,6 +69,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
     Key? key,
     required this.boldAttributeIconPath,
     required this.italicAttributeIconPath,
+    required this.underLineAttributeIconPath,
     required this.strikeThroughAttributeIconPath,
     required this.codeAttributeIconPath,
     required this.quoteAttributeIconPath,
@@ -169,6 +170,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
     required String italicAttributeIconPath,
     required String strikeThroughAttributeIconPath,
     required String codeAttributeIconPath,
+    required String underLineAttributeIconPath,
     required String quoteAttributeIconPath,
     required String listAttributeIconPath,
     required String numberedListAttributeIconPath,
@@ -262,6 +264,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
       axis: axis,
       color: color,
       boldAttributeIconPath: boldAttributeIconPath,
+      underLineAttributeIconPath:underLineAttributeIconPath,
       clearFormatAttributeIconPath: clearFormatAttributeIconPath,
       codeAttributeIconPath: codeAttributeIconPath,
       italicAttributeIconPath: italicAttributeIconPath,
@@ -372,7 +375,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
         if (showUnderLineButton)
           ToggleStyleButton(
             attribute: Attribute.underline,
-            icon: linkAttributeIconPath,
+            icon: underLineAttributeIconPath,
             iconSize: toolbarIconSize,
             tooltip: buttonTooltips[ToolbarButtons.underline],
             controller: controller,
@@ -618,6 +621,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
   final WrapCrossAlignment toolbarIconCrossAlignment;
   final bool multiRowsDisplay;
   final String boldAttributeIconPath;
+  final String underLineAttributeIconPath;
   final String italicAttributeIconPath;
   final String strikeThroughAttributeIconPath;
   final String codeAttributeIconPath;
