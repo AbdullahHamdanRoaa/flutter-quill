@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill.dart';
 
 import '../../models/documents/attribute.dart';
+import '../../models/documents/document.dart';
+import '../../models/documents/style.dart';
 import '../../models/themes/quill_icon_theme.dart';
 import '../controller.dart';
 import '../toolbar.dart';
