@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 
@@ -7,6 +8,7 @@ import '../models/themes/quill_custom_button.dart';
 import '../models/themes/quill_dialog_theme.dart';
 import '../models/themes/quill_icon_theme.dart';
 import '../translations/toolbar.i18n.dart';
+import '../utils/string_res.dart';
 import 'controller.dart';
 import 'embeds.dart';
 import 'toolbar/arrow_indicated_button_list.dart';
@@ -77,10 +79,12 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
     required this.numberedListAttributeIconPath,
     required this.linkAttributeIconPath,
     required this.clearFormatAttributeIconPath,
+    required this.stringRes,
   }) : super(key: key);
 
   factory QuillToolbar.basic({
     required QuillController controller,
+    required StringRes stringRes,
     Axis axis = Axis.horizontal,
     double toolbarIconSize = kDefaultIconSize,
     double toolbarSectionSpacing = kToolbarSectionSpacing,
@@ -216,55 +220,51 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
           'Sans Serif': 'sans-serif',
           'Serif': 'serif',
           'Monospace': 'monospace',
-          'Ibarra Real Nova': 'ibarra-real-nova',
-          'SquarePeg': 'square-peg',
-          'Nunito': 'nunito',
-          'Pacifico': 'pacifico',
-          'Roboto Mono': 'roboto-mono',
-          'Clear'.i18n: 'Clear'
+          stringRes.clear: 'Clear'
         };
 
     //default button tooltips
     final buttonTooltips = tooltips ??
         <ToolbarButtons, String>{
-          ToolbarButtons.undo: 'Undo'.i18n,
-          ToolbarButtons.redo: 'Redo'.i18n,
-          ToolbarButtons.fontFamily: 'Font family'.i18n,
-          ToolbarButtons.fontSize: 'Font size'.i18n,
-          ToolbarButtons.bold: 'Bold'.i18n,
-          ToolbarButtons.subscript: 'Subscript'.i18n,
-          ToolbarButtons.superscript: 'Superscript'.i18n,
-          ToolbarButtons.italic: 'Italic'.i18n,
-          ToolbarButtons.small: 'Small'.i18n,
-          ToolbarButtons.underline: 'Underline'.i18n,
-          ToolbarButtons.strikeThrough: 'Strike through'.i18n,
-          ToolbarButtons.inlineCode: 'Inline code'.i18n,
-          ToolbarButtons.color: 'Font color'.i18n,
-          ToolbarButtons.backgroundColor: 'Background color'.i18n,
-          ToolbarButtons.clearFormat: 'Clear format'.i18n,
-          ToolbarButtons.leftAlignment: 'Align left'.i18n,
-          ToolbarButtons.centerAlignment: 'Align center'.i18n,
-          ToolbarButtons.rightAlignment: 'Align right'.i18n,
-          ToolbarButtons.justifyAlignment: 'Justify win width'.i18n,
-          ToolbarButtons.direction: 'Text direction'.i18n,
-          ToolbarButtons.headerStyle: 'Header style'.i18n,
-          ToolbarButtons.listNumbers: 'Numbered list'.i18n,
-          ToolbarButtons.listBullets: 'Bullet list'.i18n,
-          ToolbarButtons.listChecks: 'Checked list'.i18n,
-          ToolbarButtons.codeBlock: 'Code block'.i18n,
-          ToolbarButtons.quote: 'Quote'.i18n,
-          ToolbarButtons.indentIncrease: 'Increase indent'.i18n,
-          ToolbarButtons.indentDecrease: 'Decrease indent'.i18n,
-          ToolbarButtons.link: 'Insert URL'.i18n,
-          ToolbarButtons.search: 'Search'.i18n,
+          ToolbarButtons.undo: stringRes.undo,
+          ToolbarButtons.redo: stringRes.redo,
+          ToolbarButtons.fontFamily: stringRes.fontFamily,
+          ToolbarButtons.fontSize: stringRes.fontSize,
+          ToolbarButtons.bold: stringRes.bold,
+          ToolbarButtons.subscript: stringRes.subscript,
+          ToolbarButtons.superscript: stringRes.superscript,
+          ToolbarButtons.italic: stringRes.italic,
+          ToolbarButtons.small: stringRes.small,
+          ToolbarButtons.underline: stringRes.underline,
+          ToolbarButtons.strikeThrough: stringRes.strikeThrough,
+          ToolbarButtons.inlineCode: stringRes.inlineCode,
+          ToolbarButtons.color: stringRes.fontColor,
+          ToolbarButtons.backgroundColor: stringRes.backgroundColor,
+          ToolbarButtons.clearFormat: stringRes.clearFormat,
+          ToolbarButtons.leftAlignment: stringRes.leftAlignment,
+          ToolbarButtons.centerAlignment: stringRes.centerAlignment,
+          ToolbarButtons.rightAlignment: stringRes.rightAlignment,
+          ToolbarButtons.justifyAlignment: stringRes.justifyAlignment,
+          ToolbarButtons.direction: stringRes.textDirection,
+          ToolbarButtons.headerStyle: stringRes.headerStyle,
+          ToolbarButtons.listNumbers: stringRes.listNumbers,
+          ToolbarButtons.listBullets: stringRes.listBullets,
+          ToolbarButtons.listChecks: stringRes.listChecks,
+          ToolbarButtons.codeBlock: stringRes.codeBlock,
+          ToolbarButtons.quote: stringRes.quote,
+          ToolbarButtons.indentIncrease: stringRes.indentIncrease,
+          ToolbarButtons.indentDecrease: stringRes.indentDecrease,
+          ToolbarButtons.link: stringRes.insertLink,
+          ToolbarButtons.search: stringRes.search,
         };
 
     return QuillToolbar(
       key: key,
       axis: axis,
       color: color,
+      stringRes: stringRes,
       boldAttributeIconPath: boldAttributeIconPath,
-      underLineAttributeIconPath:underLineAttributeIconPath,
+      underLineAttributeIconPath: underLineAttributeIconPath,
       clearFormatAttributeIconPath: clearFormatAttributeIconPath,
       codeAttributeIconPath: codeAttributeIconPath,
       italicAttributeIconPath: italicAttributeIconPath,
@@ -345,7 +345,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
         if (showSuperscript)
           ToggleStyleButton(
             attribute: Attribute.superscript,
-            icon:listAttributeIconPath,
+            icon: listAttributeIconPath,
             iconSize: toolbarIconSize,
             tooltip: buttonTooltips[ToolbarButtons.superscript],
             controller: controller,
@@ -404,7 +404,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
           ),
         if (showColorButton)
           ColorButton(
-            icon: Icons.color_lens,
+            icon: Icons.format_color_text,
             iconSize: toolbarIconSize,
             tooltip: buttonTooltips[ToolbarButtons.color],
             controller: controller,
@@ -414,7 +414,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
           ),
         if (showBackgroundColorButton)
           ColorButton(
-            icon: Icons.format_color_fill,
+            icon: Icons.format_color_fill_outlined,
             iconSize: toolbarIconSize,
             tooltip: buttonTooltips[ToolbarButtons.backgroundColor],
             controller: controller,
@@ -614,6 +614,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   final List<Widget> children;
+  final StringRes stringRes;
   final Axis axis;
   final double toolbarSize;
   final double toolbarSectionSpacing;
