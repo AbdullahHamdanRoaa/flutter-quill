@@ -311,6 +311,7 @@ class QuillToolbar extends StatelessWidget implements PreferredSizeWidget {
             attribute: Attribute.font,
             controller: controller,
             rawItemsMap: fontFamilies,
+            title : stringRes.fontFamily,
             afterButtonPressed: afterButtonPressed,
           ),
         if (showFontSize)

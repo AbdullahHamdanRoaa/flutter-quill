@@ -16,6 +16,7 @@ class QuillFontFamilyButton extends StatefulWidget {
     this.onSelected,
     this.iconSize = 40,
     this.fillColor,
+    this.title,
     this.hoverElevation = 1,
     this.highlightElevation = 1,
     this.iconTheme,
@@ -38,6 +39,7 @@ class QuillFontFamilyButton extends StatefulWidget {
 
   final double iconSize;
   final Color? fillColor;
+  final String? title;
   final double hoverElevation;
   final double highlightElevation;
   @Deprecated('It is not required because of `rawItemsMap`')
@@ -73,7 +75,7 @@ class _QuillFontFamilyButtonState extends State<QuillFontFamilyButton> {
   @override
   void initState() {
     super.initState();
-    _currentValue = _defaultDisplayText = widget.initialValue ?? 'Font'.i18n;
+    _currentValue = _defaultDisplayText = widget.initialValue ?? widget.title ??'';
     widget.controller.addListener(_didChangeEditingValue);
   }
 
@@ -126,7 +128,7 @@ class _QuillFontFamilyButtonState extends State<QuillFontFamilyButton> {
           if (widget.overrideTooltipByFontFamily) {
             effectiveTooltip = effectiveTooltip.isNotEmpty
                 ? '$effectiveTooltip: $_currentValue'
-                : '${'Font'.i18n}: $_currentValue';
+                : '${widget.title}: $_currentValue';
           }
           return Tooltip(message: effectiveTooltip, child: child);
         },
