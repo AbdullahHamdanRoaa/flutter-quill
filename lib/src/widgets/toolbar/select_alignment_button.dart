@@ -57,6 +57,11 @@ class _SelectAlignmentButtonState extends State<SelectAlignmentButton> {
 
   @override
   Widget build(BuildContext context) {
+    final currentDirectionality = Directionality.of(context);
+
+    bool isLTR = currentDirectionality == TextDirection.ltr;
+
+
     final _valueToText = <Attribute, String>{
       if (widget.showLeftAlignment!)
         Attribute.leftAlignment: Attribute.leftAlignment.value!,
@@ -82,13 +87,13 @@ class _SelectAlignmentButtonState extends State<SelectAlignmentButton> {
     ];
     final _valueToButtons = <Attribute, ToolbarButtons>{
       if (widget.showLeftAlignment!)
-        Attribute.leftAlignment: ToolbarButtons.leftAlignment,
-      if (widget.showCenterAlignment!)
-        Attribute.centerAlignment: ToolbarButtons.centerAlignment,
+        Attribute.leftAlignment:
+            isLTR ? ToolbarButtons.leftAlignment : ToolbarButtons.rightAlignment,
+      if (widget.showCenterAlignment!) Attribute.centerAlignment: ToolbarButtons.centerAlignment,
       if (widget.showRightAlignment!)
-        Attribute.rightAlignment: ToolbarButtons.rightAlignment,
-      if (widget.showJustifyAlignment!)
-        Attribute.justifyAlignment: ToolbarButtons.justifyAlignment,
+        Attribute.rightAlignment:
+            isLTR ? ToolbarButtons.rightAlignment : ToolbarButtons.leftAlignment,
+      if (widget.showJustifyAlignment!) Attribute.justifyAlignment: ToolbarButtons.justifyAlignment,
     };
 
     final theme = Theme.of(context);
@@ -134,12 +139,12 @@ class _SelectAlignmentButtonState extends State<SelectAlignmentButton> {
                 },
                 child: Icon(
                   _valueString[index] == Attribute.leftAlignment.value
-                      ? Icons.format_align_left
+                      ? (isLTR ? Icons.format_align_left : Icons.format_align_right)
                       : _valueString[index] == Attribute.centerAlignment.value
                           ? Icons.format_align_center
                           : _valueString[index] ==
                                   Attribute.rightAlignment.value
-                              ? Icons.format_align_right
+                              ? (isLTR?Icons.format_align_right:Icons.format_align_left)
                               : Icons.format_align_justify,
                   size: widget.iconSize,
                   color: _valueToText[_value] == _valueString[index]
